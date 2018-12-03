@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Novo Chamado</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${chamado.id == null}">Novo Chamado</h1>
+		<h1 th:if="${chamado.id != null}">Modificar Chamado</h1>
+		<hr />
+		<form th:action="@{/chamados}"
+			th:method="@{${chamado.id == null} ? 'post' : 'put'}"
+			th:object="${chamado}">
+			<input type="hidden" th:field="*{id}" />
+
+			<div class="form-group">
+				<label for="name">Titulo</label> <input id="titulo" name="titulo"
+					type="text" class="form-control" th:field="*{titulo}" />
+			</div>
+			<div class="form-group">
+				<label for="email">Descricao</label> <input id="descricao" name="descricao"
+					type="text" class="form-control" th:field="*{descricao}" />
+			</div>
+			<div class="form-group">
+				<label for="email">Estado do Servico</label> <input id="estadoDoServico" name="estadoDoServico"
+					type="text" class="form-control" th:field="*{estadoDoServico}" />
+			</div>
+			<div class="form-group">
+				<label for="email">Preco das Pcs</label> <input id="precoDasPcs" name="precoDasPcs"
+					type="text" class="form-control" th:field="*{precoDasPcs}" />
+			</div>
+			<div class="form-group">
+				<label for="email">Mao de Obra</label> <input id="maoDeObra" name="maoDeObra"
+					type="text" class="form-control" th:field="*{maoDeObra}" />
+			</div>
+			
+	
+			 <div class="form-group" th:object="${veiculo}">
+				 <select name="veiculo.id" class="form-control">
+					 <option value="">Veiculo</option>
+			 		 <option th:each="veiculo : ${veiculos}" th:value="${veiculo.id}" th:text="${veiculo.nome}"></option>
+				</select>	
+			 </div>
+
+			<button type="submit" class="btn btn-success">Abrir</button>
+			<a th:href="@{/chamados}" class="btn btn-default">Voltar</a>
+		</form>
+	</div>
+</body>
+</html>

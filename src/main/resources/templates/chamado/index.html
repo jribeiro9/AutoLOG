@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Chamados</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<h1>Chamados</h1>
+		<hr />
+		<a th:href="@{/chamados/new}" class="btn btn-success">Abrir Chamado</a><br/><br/>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titulo</th> 
+					<th>Estado do Servico</th> 
+					<th>Preco das Pcs</th>
+					<th>Mao de Obra</th> 
+					<th>Veiculo</th>
+					<th>Descricao</th> 
+					<th>Opcoes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="chamado : ${listChamado}">
+					<td th:text="${chamado.titulo}"></td> 
+					<td th:text="${chamado.estadoDoServico}"></td> 
+					<td th:text="${chamado.precoDasPcs}"></td>
+					<td th:text="${chamado.maoDeObra}"></td>
+					<td th:text="${chamado.veiculo}"></td>
+					<td th:text="${chamado.descricao}"></td>  
+					<td>
+							<a th:href="@{/chamados/{id}(id = ${chamado.id})}" class="btn btn-primary" >Mostrar</a> 
+					 		<a th:href="@{/chamados/{id}/edit(id = ${chamado.id})}" class="btn btn-info">Modificar</a> 
+					 		<a th:href="${'chamados/'+ chamado.id +'/delete'}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	  </div>
+	  
+	  
+</body>
+</html>
