@@ -39,6 +39,10 @@ public class Chamado implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="veiculo_id")
 	private Veiculo veiculo;
+	
+	@ManyToOne
+	@JoinColumn(name="mecanico_id")
+	private Mecanico mecanico;
 
 	public Integer getId() {
 		return id;
@@ -94,6 +98,14 @@ public class Chamado implements Serializable {
 
 	public void setVeiculo(Veiculo veiculo) {
 		this.veiculo = veiculo;
+	}
+
+	public Mecanico getMecanico() {
+		return mecanico;
+	}
+
+	public void setMecanico(Mecanico mecanico) {
+		this.mecanico = mecanico;
 	}
 
 	

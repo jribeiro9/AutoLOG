@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.model.Chamado;
+import com.example.model.Mecanico;
 import com.example.model.Veiculo;
 import com.example.service.ChamadoService;
+import com.example.service.MecanicoService;
 import com.example.service.VeiculoService;
 
 @Controller
@@ -30,7 +32,10 @@ public class ChamadoController {
 	private ChamadoService chamadoService;
 	
 	@Autowired
-	private VeiculoService veiculoService; 
+	private VeiculoService veiculoService;
+	
+	@Autowired
+	private MecanicoService mecanicoService;
 	
 	@GetMapping
 	public String index(Model model) {
@@ -51,10 +56,12 @@ public class ChamadoController {
 
 	@GetMapping(value = "/new")
 	public String create(Model model, @ModelAttribute Chamado entityChamado, 
-			             @ModelAttribute Veiculo entityVeiculo) {
+			             @ModelAttribute Veiculo entityVeiculo, @ModelAttribute Mecanico entityMecanico) {
 		model.addAttribute("chamado", entityChamado);
 		List<Veiculo> all = veiculoService.findAll();
+		List<Mecanico> allm = mecanicoService.findAll();
 		model.addAttribute("veiculos", all);
+		model.addAttribute("mecanicos", allm);
 		
 		return "chamado/form";
 	}
