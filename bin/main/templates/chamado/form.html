@@ -48,6 +48,13 @@
 			 		 <option th:each="veiculo : ${veiculos}" th:value="${veiculo.id}" th:text="${veiculo.nome}"></option>
 				</select>	
 			 </div>
+			 <div class="form-group" th:object="${mecanico}">
+				 <select name="mecanico.id" class="form-control">
+					 <option value="">Mecanico</option>
+			 		 <option th:each="mecanico : ${mecanicos}" th:value="${mecanico.id}" th:text="${mecanico.nome}"></option>
+				</select>	
+			 </div>
+			 </br>
 
 			<button type="submit" class="btn btn-success">Abrir</button>
 			<a th:href="@{/chamados}" class="btn btn-default">Voltar</a>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Mecanicos Cadastrados</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<h1>Mecanicos Cadastrados</h1>
+		<hr />
+		<a th:href="@{/mecanicos/new}" class="btn btn-success">Cadastrar Mecanico</a><br/><br/>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Registro</th> 
+					<th>Nome</th>  
+					<th>Opcao</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="mecanico : ${listMecanico}">
+					<td th:text="${mecanico.registro}"></td> 
+					<td th:text="${mecanico.nome}"></td> 
+					<td>
+							<a th:href="@{/mecanicos/{id}(id = ${mecanico.id})}" class="btn btn-primary">Acessar</a> 
+					 		<a th:href="@{/mecanicos/{id}/edit(id = ${mecanico.id})}" class="btn btn-info">Modificar</a> 
+							<a th:href="${'mecanicos/'+ mecanico.id+'/delete'}" class="btn btn-danger">Remover</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
